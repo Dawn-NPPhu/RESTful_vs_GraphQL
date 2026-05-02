@@ -1,0 +1,39 @@
+{
+  "name": "restful-vs-graphql",
+  "version": "1.0.0",
+  "description": "Comprehensive comparison of RESTful API vs GraphQL - Topic 3 API Design",
+  "main": "examples/restful-api.js",
+  "scripts": {
+    "start": "npm run dev:restful",
+    "dev:restful": "node examples/restful-api.js",
+    "dev:graphql": "node examples/graphql-api.js",
+    "dev:both": "concurrently \"npm run dev:restful\" \"npm run dev:graphql\"",
+    "test:restful": "node examples/restful-client.js",
+    "test:graphql": "node examples/graphql-client.js",
+    "demo": "npm run test:graphql"
+  },
+  "keywords": [
+    "REST",
+    "GraphQL",
+    "API Design",
+    "Comparison",
+    "Web Programming"
+  ],
+  "author": "Project GK - Web Programming & Applications (503073)",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "@apollo/server": "^4.10.1",
+    "graphql": "^16.8.1"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/example/restful-vs-graphql"
+  }
+}

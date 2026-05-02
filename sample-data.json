@@ -1,0 +1,139 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "email": "john@example.com",
+      "age": 28,
+      "role": "admin",
+      "createdAt": "2024-01-01T10:00:00Z"
+    },
+    {
+      "id": "2",
+      "name": "Jane Smith",
+      "email": "jane@example.com",
+      "age": 26,
+      "role": "user",
+      "createdAt": "2024-01-02T14:30:00Z"
+    },
+    {
+      "id": "3",
+      "name": "Alice Johnson",
+      "email": "alice@example.com",
+      "age": 24,
+      "role": "moderator",
+      "createdAt": "2024-01-03T09:15:00Z"
+    }
+  ],
+  "posts": [
+    {
+      "id": "1",
+      "title": "RESTful API Best Practices",
+      "content": "A comprehensive guide on designing RESTful APIs with proper status codes, error handling, and versioning strategies.",
+      "userId": "1",
+      "likes": 45,
+      "views": 320,
+      "shares": 12,
+      "createdAt": "2024-01-05T08:00:00Z",
+      "updatedAt": "2024-01-05T08:00:00Z"
+    },
+    {
+      "id": "2",
+      "title": "Getting Started with GraphQL",
+      "content": "Learn how to build a GraphQL API from scratch. This guide covers schema design, resolvers, and query optimization.",
+      "userId": "2",
+      "likes": 78,
+      "views": 512,
+      "shares": 34,
+      "createdAt": "2024-01-06T10:30:00Z",
+      "updatedAt": "2024-01-06T10:30:00Z"
+    },
+    {
+      "id": "3",
+      "title": "RESTful vs GraphQL: A Detailed Comparison",
+      "content": "Deep dive into the differences between RESTful and GraphQL APIs, including performance metrics, use cases, and real-world examples.",
+      "userId": "1",
+      "likes": 156,
+      "views": 1024,
+      "shares": 67,
+      "createdAt": "2024-01-07T13:45:00Z",
+      "updatedAt": "2024-01-07T13:45:00Z"
+    },
+    {
+      "id": "4",
+      "title": "API Security: Authentication and Authorization",
+      "content": "Understanding JWT tokens, OAuth 2.0, and API key management for securing your APIs.",
+      "userId": "3",
+      "likes": 92,
+      "views": 654,
+      "shares": 28,
+      "createdAt": "2024-01-08T11:20:00Z",
+      "updatedAt": "2024-01-08T11:20:00Z"
+    },
+    {
+      "id": "5",
+      "title": "Caching Strategies for API Performance",
+      "content": "Learn about HTTP caching, Redis caching, and query result caching to optimize API performance.",
+      "userId": "2",
+      "likes": 68,
+      "views": 445,
+      "shares": 19,
+      "createdAt": "2024-01-09T15:00:00Z",
+      "updatedAt": "2024-01-09T15:00:00Z"
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "content": "Great explanation! Very helpful for beginners.",
+      "postId": "1",
+      "userId": "2",
+      "likes": 5,
+      "createdAt": "2024-01-05T09:15:00Z"
+    },
+    {
+      "id": "2",
+      "content": "What about versioning strategies for GraphQL?",
+      "postId": "2",
+      "userId": "3",
+      "likes": 8,
+      "createdAt": "2024-01-06T11:45:00Z"
+    },
+    {
+      "id": "3",
+      "content": "The performance comparison is eye-opening. GraphQL definitely has advantages.",
+      "postId": "3",
+      "userId": "2",
+      "likes": 12,
+      "createdAt": "2024-01-07T14:20:00Z"
+    },
+    {
+      "id": "4",
+      "content": "JWT implementation details would be helpful.",
+      "postId": "4",
+      "userId": "1",
+      "likes": 3,
+      "createdAt": "2024-01-08T12:00:00Z"
+    },
+    {
+      "id": "5",
+      "content": "Redis caching is definitely a game changer.",
+      "postId": "5",
+      "userId": "1",
+      "likes": 7,
+      "createdAt": "2024-01-09T16:30:00Z"
+    }
+  ],
+  "metadata": {
+    "totalUsers": 3,
+    "totalPosts": 5,
+    "totalComments": 5,
+    "lastUpdated": "2024-01-09T16:30:00Z",
+    "statistics": {
+      "averageLikesPerPost": 87.8,
+      "averageViewsPerPost": 627.0,
+      "averageSharesPerPost": 32.0,
+      "averageLikesPerComment": 7.0
+    }
+  }
+}

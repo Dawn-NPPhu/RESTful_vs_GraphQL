@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RESTful vs GraphQL - Library API Comparison</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav">
+      <div class="brand">
+        <div class="brand-icon">API</div>
+        <div>
+          <p class="eyebrow">Topic 3</p>
+          <h1>RESTful vs GraphQL</h1>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#comparison">Comparison</a>
+        <a href="#demo">Live Demo</a>
+        <a href="http://localhost:3002/graphql" target="_blank" rel="noreferrer">GraphQL Sandbox</a>
+      </div>
+    </nav>
+
+    <section class="hero-content">
+      <div>
+        <p class="badge">Library API Comparison Dashboard</p>
+        <h2>Compare REST endpoints and GraphQL queries on the same library scenario.</h2>
+        <p class="hero-text">
+          This frontend demonstrates over-fetching, under-fetching, query vs mutation, and request efficiency.
+          Use it in your midterm video to show why GraphQL can reduce unnecessary data transfer compared to traditional REST.
+        </p>
+        <div class="cta-group">
+          <button id="btnGraphqlEfficient" class="btn primary">Run GraphQL Efficient Fetch</button>
+          <button id="btnRestUnderfetch" class="btn secondary">Run REST Under-fetching</button>
+        </div>
+      </div>
+      <div class="architecture-card">
+        <h3>Architecture</h3>
+        <div class="flow">
+          <span>Frontend</span>
+          <strong>→</strong>
+          <span>REST API<br /><small>:3001</small></span>
+          <strong>+</strong>
+          <span>GraphQL API<br /><small>:3002/graphql</small></span>
+        </div>
+        <p>
+          The UI calls both APIs and measures request count, response size, and elapsed time.
+        </p>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="status-grid" aria-label="server status">
+      <article class="status-card">
+        <span class="dot" id="restDot"></span>
+        <div>
+          <p>REST API</p>
+          <strong id="restStatus">Checking...</strong>
+        </div>
+      </article>
+      <article class="status-card">
+        <span class="dot" id="graphqlDot"></span>
+        <div>
+          <p>GraphQL API</p>
+          <strong id="graphqlStatus">Checking...</strong>
+        </div>
+      </article>
+      <article class="status-card">
+        <span class="dot ok"></span>
+        <div>
+          <p>Demo Domain</p>
+          <strong>Library System</strong>
+        </div>
+      </article>
+    </section>
+
+    <section id="comparison" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Concept</p>
+        <h2>What this frontend proves</h2>
+      </div>
+      <div class="concept-grid">
+        <article>
+          <h3>REST Over-fetching</h3>
+          <p>REST often returns a fixed JSON shape. The UI may only need title and availability, but the endpoint still returns ISBN, pages, timestamps, description, and IDs.</p>
+        </article>
+        <article>
+          <h3>REST Under-fetching</h3>
+          <p>When the UI needs a book with author and category details, REST may require multiple calls: book, author, and category.</p>
+        </article>
+        <article>
+          <h3>GraphQL Query</h3>
+          <p>GraphQL lets the frontend request exactly the fields it needs in one query: book title, author name, category name, and availability.</p>
+        </article>
+        <article>
+          <h3>Mutation</h3>
+          <p>Both REST POST and GraphQL mutation can create a book. The demo shows how the write operation looks in each API style.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="demo" class="section dashboard">
+      <div class="section-heading split">
+        <div>
+          <p class="eyebrow">Live Demo</p>
+          <h2>Fetching efficiency comparison</h2>
+        </div>
+        <button id="btnReset" class="btn ghost">Clear output</button>
+      </div>
+
+      <div class="metrics-grid">
+        <article class="metric-card rest">
+          <span>REST Requests</span>
+          <strong id="restRequests">0</strong>
+          <small id="restTime">0 ms</small>
+        </article>
+        <article class="metric-card rest">
+          <span>REST Payload</span>
+          <strong id="restBytes">0 B</strong>
+          <small>JSON response size</small>
+        </article>
+        <article class="metric-card graphql">
+          <span>GraphQL Requests</span>
+          <strong id="graphqlRequests">0</strong>
+          <small id="graphqlTime">0 ms</small>
+        </article>
+        <article class="metric-card graphql">
+          <span>GraphQL Payload</span>
+          <strong id="graphqlBytes">0 B</strong>
+          <small>JSON response size</small>
+        </article>
+      </div>
+
+      <div class="actions-grid">
+        <article class="action-card">
+          <h3>REST demo</h3>
+          <p>Show REST over-fetching and under-fetching using library endpoints.</p>
+          <div class="button-row">
+            <button id="btnRestOverfetch" class="btn secondary">REST Over-fetching</button>
+            <button id="btnRestUnderfetch2" class="btn secondary">REST Under-fetching</button>
+          </div>
+          <code>GET /api/books</code>
+          <code>GET /api/books/1 → /api/authors/:id → /api/categories/:id</code>
+        </article>
+
+        <article class="action-card">
+          <h3>GraphQL demo</h3>
+          <p>Request exactly the fields needed by the UI in one GraphQL query.</p>
+          <div class="button-row">
+            <button id="btnGraphqlEfficient2" class="btn primary">GraphQL Efficient Query</button>
+            <button id="btnGraphqlStats" class="btn secondary">GraphQL Stats</button>
+          </div>
+          <code>POST /graphql</code>
+          <code>books { title author { name } category { name } }</code>
+        </article>
+      </div>
+
+      <div class="data-panel">
+        <div class="panel-header">
+          <h3>Books displayed by the frontend</h3>
+          <p id="summaryText">Click a demo button to load data.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Category</th>
+                <th>Available</th>
+                <th>Rating</th>
+              </tr>
+            </thead>
+            <tbody id="booksTable">
+              <tr><td colspan="5" class="empty">No data loaded yet.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="code-grid">
+        <article class="code-card">
+          <div class="panel-header">
+            <h3>REST Raw Response</h3>
+            <span id="restLabel">Waiting...</span>
+          </div>
+          <pre id="restOutput">Click a REST button.</pre>
+        </article>
+        <article class="code-card">
+          <div class="panel-header">
+            <h3>GraphQL Raw Response</h3>
+            <span id="graphqlLabel">Waiting...</span>
+          </div>
+          <pre id="graphqlOutput">Click a GraphQL button.</pre>
+        </article>
+      </div>
+    </section>
+
+    <section class="section mutation-section">
+      <div class="section-heading">
+        <p class="eyebrow">Mutation / POST Demo</p>
+        <h2>Create a new book</h2>
+        <p>Use this part to show REST POST versus GraphQL mutation in your presentation.</p>
+      </div>
+
+      <div class="form-grid">
+        <form id="restCreateForm" class="form-card">
+          <h3>Create by REST</h3>
+          <label>Book title <input name="title" value="REST API Design Handbook" required /></label>
+          <label>Author ID <input name="authorId" value="1" required /></label>
+          <label>Category ID <input name="categoryId" value="1" required /></label>
+          <label>Total copies <input name="totalCopies" value="4" required /></label>
+          <button class="btn secondary" type="submit">POST /api/books</button>
+        </form>
+
+        <form id="graphqlCreateForm" class="form-card">
+          <h3>Create by GraphQL</h3>
+          <label>Book title <input name="title" value="GraphQL Query Patterns" required /></label>
+          <label>Author ID <input name="authorId" value="2" required /></label>
+          <label>Category ID <input name="categoryId" value="3" required /></label>
+          <label>Total copies <input name="totalCopies" value="5" required /></label>
+          <button class="btn primary" type="submit">Run createBook mutation</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Web Programming & Applications - Midterm Essay - Topic 3: API Design RESTful vs GraphQL</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
